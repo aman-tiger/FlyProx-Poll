@@ -201,7 +201,7 @@ export default function LocationScreen({ onBack, onSave }: LocationScreenProps) 
         ListFooterComponent={() => (
           <Pressable
             style={({ pressed }) => [styles.item, pressed && styles.itemPressed]}
-            onPress={() => Linking.openURL('mailto:support@flyprox.app')}
+            onPress={() => Linking.openURL('mailto:support@flyprox.com')}
           >
             <View style={styles.itemIcon}>
               <Text style={styles.itemIconText}>❓</Text>
