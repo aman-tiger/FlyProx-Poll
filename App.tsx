@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import OnboardingScreen from './src/screens/OnboardingScreen';
+import AuthScreen from './src/screens/AuthScreen';
+
+type Screen = 'onboarding' | 'auth' | 'home';
 
 export default function App() {
-  const [onboardingDone, setOnboardingDone] = useState(false);
+  const [screen, setScreen] = useState<Screen>('onboarding');
 
-  if (!onboardingDone) {
-    return <OnboardingScreen onFinish={() => setOnboardingDone(true)} />;
+  if (screen === 'onboarding') {
+    return <OnboardingScreen onFinish={() => setScreen('auth')} />;
+  }
+
+  if (screen === 'auth') {
+    return <AuthScreen onNext={(phone) => setScreen('home')} />;
   }
 
   return (
     <View style={styles.placeholder}>
-      <Text style={styles.placeholderText}>🎉 Онбординг пройден!</Text>
-      <Text style={styles.placeholderSub}>Следующий экран скоро...</Text>
+      <Text style={styles.placeholderText}>🎉 Добро пожаловать!</Text>
+      <Text style={styles.placeholderSub}>Главный экран скоро...</Text>
     </View>
   );
 }
