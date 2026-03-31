@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import OnboardingScreen from './src/screens/OnboardingScreen';
 import AuthScreen from './src/screens/AuthScreen';
+import LocationScreen from './src/screens/LocationScreen';
 
-type Screen = 'onboarding' | 'auth' | 'home';
+type Screen = 'onboarding' | 'auth' | 'location' | 'home';
 
 export default function App() {
   const [screen, setScreen] = useState<Screen>('onboarding');
@@ -13,7 +14,18 @@ export default function App() {
   }
 
   if (screen === 'auth') {
-    return <AuthScreen onNext={(phone) => setScreen('home')} />;
+    return (
+      <AuthScreen onNext={() => setScreen('location')} />
+    );
+  }
+
+  if (screen === 'location') {
+    return (
+      <LocationScreen
+        onBack={() => setScreen('auth')}
+        onSave={() => setScreen('home')}
+      />
+    );
   }
 
   return (
